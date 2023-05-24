@@ -102,7 +102,7 @@ module e203_ifu(
   `endif//}
    `ifdef bht
  input bht_wb_mis,                              // TODOL bht IO --- takenMiss
- input bht_wb_bjp,                              // TODO: bht IO --- taken valid
+ input bht_wb_bxx,                              // TODO: bht IO --- taken valid
  input bht_wb_prdt,                             // TODO: bht IO --- 
  input bht_wb_rslv,                             // TODO: bht IO --- exTakenPre
  input [`E203_PC_SIZE-1:0] bht_wb_pc,           // TODO: bht IO --- takenPC
@@ -179,7 +179,7 @@ module e203_ifu(
   `endif//}
   `ifdef bht
     .bht_wb_mis              (bht_wb_mis),                              // TODOL bht IO --- takenMiss
-    .bht_wb_bjp              (bht_wb_bjp),                              // TODO: bht IO --- taken valid
+    .bht_wb_bxx              (bht_wb_bxx),                              // TODO: bht IO --- taken valid
     .bht_wb_prdt             (bht_wb_prdt),                             // TODO: bht IO --- 
     .bht_wb_rslv             (bht_wb_rslv),                             // TODO: bht IO --- exTakenPre
     .bht_wb_pc               (bht_wb_pc),           // TODO: bht IO --- takenPC

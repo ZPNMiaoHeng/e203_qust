@@ -59,7 +59,7 @@ module e203_ifu_litebpu(
 
   `ifdef bht
   input bht_wb_mis,                              // TODOL bht IO --- takenMiss
-  input bht_wb_bjp,                              // TODO: bht IO --- taken valid
+  input bht_wb_bxx,                              // TODO: bht IO --- taken valid
   input bht_wb_prdt,                             // TODO: bht IO --- 
   input bht_wb_rslv,                             // TODO: bht IO --- exTakenPre
   input [`E203_PC_SIZE-1:0] bht_wb_pc,           // TODO: bht IO --- takenPC
@@ -81,7 +81,7 @@ module e203_ifu_litebpu(
   .io_takenPre(bht_prdt_taken),
   .io_ready(bht_ready),
 
-  .io_takenValid(bht_wb_bjp),
+  .io_takenValid(bht_wb_bxx),
   .io_takenMiss(bht_wb_mis),
   .io_exTakenPre(bht_wb_rslv),
   .io_takenPC(bht_wb_pc)

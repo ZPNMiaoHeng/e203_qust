@@ -106,7 +106,7 @@ module e203_exu(
   `endif//}
   `ifdef bht
   output bht_wb_mis,                              // TODOL bht IO --- takenMiss
-  output bht_wb_bjp,                              // TODO: bht IO --- taken valid
+  output bht_wb_bxx,                              // TODO: bht IO --- taken valid
   output bht_wb_prdt,                             // TODO: bht IO --- 
   output bht_wb_rslv,                             // TODO: bht IO --- exTakenPre
   output [`E203_PC_SIZE-1:0] bht_wb_pc,           // TODO: bht IO --- takenPC
@@ -254,6 +254,8 @@ module e203_exu(
   wire nice_cmt_off_ilgl;
   wire nice_xs_off;
   `endif//}
+  
+  wire dec_bxx;
 
   //////////////////////////////////////////////////////////////
   // The Decoded Info-Bus
@@ -271,7 +273,7 @@ module e203_exu(
     .dec_bjp   (),
     .dec_jal   (),
     .dec_jalr  (),
-    .dec_bxx   (),
+    .dec_bxx   (dec_bxx),                      // TODO:bht wb io
     .dec_jalr_rs1idx(),
     .dec_bjp_imm(),
 
@@ -878,7 +880,7 @@ module e203_exu(
   `endif//}
   `ifdef bht
     .bht_wb_mis              (bht_wb_mis),                              // TODOL bht IO --- takenMiss
-    .bht_wb_bjp              (bht_wb_bjp),                              // TODO: bht IO --- taken valid
+//    .bht_wb_bjp              (bht_wb_bjp),                              // TODO: bht IO --- taken valid
     .bht_wb_prdt             (bht_wb_prdt),                             // TODO: bht IO --- 
     .bht_wb_rslv             (bht_wb_rslv),                             // TODO: bht IO --- exTakenPre
     .bht_wb_pc               (bht_wb_pc),           // TODO: bht IO --- takenPC
@@ -888,6 +890,7 @@ module e203_exu(
     .rst_n                   (rst_n        ) 
   );
 
+  assign bht_wb_bxx = dec_bxx;
     
     // The Decode to IFU read-en used for the branch dependency check
     //   only need to check the integer regfile, so here we need to exclude

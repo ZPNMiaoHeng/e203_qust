@@ -145,7 +145,7 @@ module e203_exu_commit(
   `endif//}
   `ifdef bht
   output bht_wb_mis,                              // TODOL bht IO --- takenMiss
-  output bht_wb_bjp,                              // TODO: bht IO --- taken valid
+  // output bht_wb_bjp,                              // TODO: bht IO --- taken valid
   output bht_wb_prdt,                             // TODO: bht IO --- 
   output bht_wb_rslv,                             // TODO: bht IO --- exTakenPre
   output [`E203_PC_SIZE-1:0] bht_wb_pc,           // TODO: bht IO --- takenPC
@@ -335,7 +335,7 @@ module e203_exu_commit(
 
   `ifdef bht
   assign bht_wb_mis  = alu_brchmis_flush_req;
-  assign bht_wb_bjp  = alu_cmt_i_bjp;
+  // assign bht_wb_bjp  = alu_cmt_i_bjp;         //FIXME - 
   assign bht_wb_prdt = alu_cmt_i_bjp_prdt;
   assign bht_wb_rslv = alu_cmt_i_bjp_rslv;
   assign bht_wb_pc   = alu_cmt_i_pc;
