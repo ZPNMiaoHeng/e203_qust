@@ -357,6 +357,13 @@ module e203_core(
   `ifdef E203_TIMING_BOOST//}
   wire [`E203_PC_SIZE-1:0] pipe_flush_pc;  
   `endif//}
+  `ifdef bht
+  wire bht_wb_mis;                              // TODOL bht IO --- takenMiss
+  wire bht_wb_bjp;                              // TODO: bht IO --- taken valid
+  wire bht_wb_prdt;                             // TODO: bht IO --- 
+  wire bht_wb_rslv;                             // TODO: bht IO --- exTakenPre
+  wire [`E203_PC_SIZE-1:0] bht_wb_pc;           // TODO: bht IO --- takenPC
+  `endif
 
   wire oitf_empty;
   wire [`E203_XLEN-1:0] rf2ifu_x1;
@@ -431,6 +438,13 @@ module e203_core(
   `ifdef E203_TIMING_BOOST//}
     .pipe_flush_pc          (pipe_flush_pc),  
   `endif//}
+  `ifdef bht
+    .bht_wb_mis              (bht_wb_mis),                              // TODOL bht IO --- takenMiss
+    .bht_wb_bjp              (bht_wb_bjp),                              // TODO: bht IO --- taken valid
+    .bht_wb_prdt             (bht_wb_prdt),                             // TODO: bht IO --- 
+    .bht_wb_rslv             (bht_wb_rslv),                             // TODO: bht IO --- exTakenPre
+    .bht_wb_pc               (bht_wb_pc),           // TODO: bht IO --- takenPC
+  `endif
 
                                  
     .oitf_empty             (oitf_empty   ),
@@ -559,6 +573,13 @@ module e203_core(
   `ifdef E203_TIMING_BOOST//}
     .pipe_flush_pc          (pipe_flush_pc),  
   `endif//}
+  `ifdef bht
+    .bht_wb_mis              (bht_wb_mis),                              // TODOL bht IO --- takenMiss
+    .bht_wb_bjp              (bht_wb_bjp),                              // TODO: bht IO --- taken valid
+    .bht_wb_prdt             (bht_wb_prdt),                             // TODO: bht IO --- 
+    .bht_wb_rslv             (bht_wb_rslv),                             // TODO: bht IO --- exTakenPre
+    .bht_wb_pc               (bht_wb_pc),           // TODO: bht IO --- takenPC
+  `endif
 
     .lsu_o_valid            (lsu_o_valid   ),
     .lsu_o_ready            (lsu_o_ready   ),

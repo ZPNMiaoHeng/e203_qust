@@ -94,11 +94,9 @@ module e203_exu_branchslv(
   assign brchmis_flush_req_pre = cmt_i_valid & brchmis_need_flush;
 
 // Branach Debug
+`ifdef bht
   reg [31:0] bxx = 0;
   reg [31:0] bxxmis = 0;
-  
-  // assign bxx = cmt_i_valid & cmt_i_bjp & (!(cmt_i_bjp_prdt ^ cmt_i_bjp_rslv)) ? bxx + 1'b1 : bxx;
-  // assign bxxmis = cmt_i_valid & cmt_i_bjp & (cmt_i_bjp_prdt ^ cmt_i_bjp_rslv) ? bxxmis + 1'b1 : bxxmis;
 
   always@(posedge clk) begin
     if(!rst_n) begin
@@ -140,6 +138,7 @@ module e203_exu_branchslv(
     end
   end
 
+`endif
 
   // * If it is a DRET instruction, the new target PC is DPC register
   // * If it is a RET instruction, the new target PC is EPC register

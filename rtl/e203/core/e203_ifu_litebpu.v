@@ -57,10 +57,36 @@ module e203_ifu_litebpu(
   input  [`E203_XLEN-1:0] rf2bpu_x1,
   input  [`E203_XLEN-1:0] rf2bpu_rs1,
 
+  `ifdef bht
+  input bht_wb_mis,                              // TODOL bht IO --- takenMiss
+  input bht_wb_bjp,                              // TODO: bht IO --- taken valid
+  input bht_wb_prdt,                             // TODO: bht IO --- 
+  input bht_wb_rslv,                             // TODO: bht IO --- exTakenPre
+  input [`E203_PC_SIZE-1:0] bht_wb_pc,           // TODO: bht IO --- takenPC
+  `endif
+
   input  clk,
   input  rst_n
   );
-  //TODO: 添加Debug模块
+
+  `ifdef bht
+  wire bht_prdt_taken;
+  wire bht_ready;
+
+  bht u_bht(
+  .clock(clk),
+  .reset(!rst_n),
+  .io_valid(dec_bxx),
+  .io_pc(pc),
+  .io_takenPre(bht_prdt_taken),
+  .io_ready(bht_ready),
+
+  .io_takenValid(bht_wb_bjp),
+  .io_takenMiss(bht_wb_mis),
+  .io_exTakenPre(bht_wb_rslv),
+  .io_takenPC(bht_wb_pc)
+  );
+  `endif
 
   // BPU of E201 utilize very simple static branch prediction logics
   //   * JAL: The target address of JAL is calculated based on current PC value
@@ -82,7 +108,12 @@ module e203_ifu_litebpu(
   //          is calculated based on current PC value and offset
 
   // The JAL and JALR is always jump, bxxx backward is predicted as taken  
-  assign prdt_taken   = (dec_jal | dec_jalr | (dec_bxx & dec_bjp_imm[`E203_XLEN-1]));  
+  `ifdef bht
+  assign prdt_taken   = (dec_jal | dec_jalr | bht_prdt_taken);  
+  `else
+  assign prdt_taken   = (dec_jal | dec_jalr | (dec_bxx & dec_bjp_imm[`E203_XLEN-1]));
+  `endif  
+
   // The JALR with rs1 == x1 have dependency or xN have dependency
   wire dec_jalr_rs1x0 = (dec_jalr_rs1idx == `E203_RFIDX_WIDTH'd0);
   wire dec_jalr_rs1x1 = (dec_jalr_rs1idx == `E203_RFIDX_WIDTH'd1);

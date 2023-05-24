@@ -792,3 +792,5 @@
     `define E203_BIU_RSP_DP        0
   `endif
 
+  `define bht
+
