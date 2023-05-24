@@ -879,6 +879,7 @@ module e203_exu(
     .pipe_flush_pc           (pipe_flush_pc),  
   `endif//}
   `ifdef bht
+    .dec_bxx                 (dec_bxx),
     .bht_wb_mis              (bht_wb_mis),                              // TODOL bht IO --- takenMiss
 //    .bht_wb_bjp              (bht_wb_bjp),                              // TODO: bht IO --- taken valid
     .bht_wb_prdt             (bht_wb_prdt),                             // TODO: bht IO --- 

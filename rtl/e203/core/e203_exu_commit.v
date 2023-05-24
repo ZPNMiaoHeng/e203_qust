@@ -144,6 +144,7 @@ module e203_exu_commit(
   output  [`E203_PC_SIZE-1:0] pipe_flush_pc,  
   `endif//}
   `ifdef bht
+  input  dec_bxx,
   output bht_wb_mis,                              // TODOL bht IO --- takenMiss
   // output bht_wb_bjp,                              // TODO: bht IO --- taken valid
   output bht_wb_prdt,                             // TODO: bht IO --- 
@@ -197,6 +198,7 @@ module e203_exu_commit(
   `ifdef E203_TIMING_BOOST//}
     .brchmis_flush_pc        (alu_brchmis_flush_pc),  
   `endif//}
+    .dec_bxx(dec_bxx),
 
     .clk   (clk  ),
     .rst_n (rst_n)

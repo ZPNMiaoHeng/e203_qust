@@ -72,6 +72,8 @@ module e203_ifu_litebpu(
   `ifdef bht
   wire bht_prdt_taken;
   wire bht_ready;
+  wire takenValid;
+  assign takenValid = bht_wb_bxx & !ir_empty;
 
   bht u_bht(
   .clock(clk),
@@ -81,7 +83,8 @@ module e203_ifu_litebpu(
   .io_takenPre(bht_prdt_taken),
   .io_ready(bht_ready),
 
-  .io_takenValid(bht_wb_bxx),
+  .io_takenValid(takenValid),
+  // .io_takenValid(bht_wb_bxx),
   .io_takenMiss(bht_wb_mis),
   .io_exTakenPre(bht_wb_rslv),
   .io_takenPC(bht_wb_pc)
