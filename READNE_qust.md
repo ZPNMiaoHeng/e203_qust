@@ -17,17 +17,17 @@
   - [ ] 找出e203**结束指令**，改进调试信息；
 - [ ] 测试静态分支预测准确率；
 - [x] 接入动态分支预测：竞争分支预测-基于局部历史和基于全局历史
+  - [x] debug:删除`jalr/jal`指令预测；
+  - [x] debug：一条指令多次写入`bht/pht`寄存器；
 - [ ] 测试动态分支预测准确率；
 
 # 测试：
 测试三个基准测试文件，得到分支预测准确率信息。（文档记录：截图即可）
 ## e203静态分支预测准确率
+修改bug,切换分支`e203_branch`进行测试；
 ### addi 
-0x16 0x1936
-![terminal](https://zpnmh.oss-cn-beijing.aliyuncs.com/undefined202305231639460.png)
+![Pasted image 20230524225303](https://zpnmh.oss-cn-beijing.aliyuncs.com/undefined202305242253716.png)
 ## e203竞争分支预测准确率
 动态分支预测需要一段训练时间，因此前期预测结果不好。
 ### addi
-
-![Pasted image 20230524104049](https://zpnmh.oss-cn-beijing.aliyuncs.com/undefined202305241040437.png)
-0x28  0x1925
+![Pasted image 20230524230339](https://zpnmh.oss-cn-beijing.aliyuncs.com/undefined202305242303986.png)
