@@ -95,7 +95,7 @@ module e203_exu_branchslv(
   assign brchmis_flush_req_pre = cmt_i_valid & brchmis_need_flush;
 
 // Branach Debug
-`ifdef bht
+`ifdef bht_debug
   reg [31:0] bxx = 0;
   reg [31:0] bxxmis = 0;
 
