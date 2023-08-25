@@ -106,6 +106,7 @@ module e203_ifu(
  input bht_wb_prdt,                             // TODO: bht IO --- 
  input bht_wb_rslv,                             // TODO: bht IO --- exTakenPre
  input [`E203_PC_SIZE-1:0] bht_wb_pc,           // TODO: bht IO --- takenPC
+ input [`E203_PC_SIZE-1:0] bht_wb_takenPC,              // TODO: bht IO --- takenPC
   `endif
 
       
@@ -183,6 +184,7 @@ module e203_ifu(
     .bht_wb_prdt             (bht_wb_prdt),                             // TODO: bht IO --- 
     .bht_wb_rslv             (bht_wb_rslv),                             // TODO: bht IO --- exTakenPre
     .bht_wb_pc               (bht_wb_pc),           // TODO: bht IO --- takenPC
+    .bht_wb_takenPC          (bht_wb_takenPC),
   `endif
     .pipe_flush_add_op2 (pipe_flush_add_op2), 
     .ifu_halt_req  (ifu_halt_req ),

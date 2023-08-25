@@ -85,6 +85,7 @@ module e203_ifu_ifetch(
    input bht_wb_prdt,                             // TODO: bht IO --- 
    input bht_wb_rslv,                             // TODO: bht IO --- exTakenPre
    input [`E203_PC_SIZE-1:0] bht_wb_pc,           // TODO: bht IO --- takenPC
+  input [`E203_PC_SIZE-1:0] bht_wb_takenPC,              // TODO: bht IO --- takenPC
   `endif
 
       
@@ -403,6 +404,7 @@ module e203_ifu_ifetch(
   wire bpu_wait;
   wire [`E203_PC_SIZE-1:0] prdt_pc_add_op1;  
   wire [`E203_PC_SIZE-1:0] prdt_pc_add_op2;
+  wire [`E203_PC_SIZE-1:0] prdt_pc;
 
   e203_ifu_litebpu u_e203_ifu_litebpu(
 
@@ -427,6 +429,7 @@ module e203_ifu_ifetch(
     .prdt_taken               (prdt_taken     ),  
     .prdt_pc_add_op1          (prdt_pc_add_op1),  
     .prdt_pc_add_op2          (prdt_pc_add_op2),
+    .prdt_pc                  (prdt_pc),
 
     .bpu2rf_rs1_ena           (bpu2rf_rs1_ena),
     .rf2bpu_x1                (rf2ifu_x1    ),
@@ -437,6 +440,7 @@ module e203_ifu_ifetch(
     .bht_wb_prdt             (bht_wb_prdt),                             // TODO: bht IO --- 
     .bht_wb_rslv             (bht_wb_rslv),                             // TODO: bht IO --- exTakenPre
     .bht_wb_pc               (bht_wb_pc),           // TODO: bht IO --- takenPC
+    .bht_wb_takenPC          (bht_wb_takenPC),
   `endif
 
     .clk                      (clk  ) ,
@@ -458,7 +462,8 @@ module e203_ifu_ifetch(
                                dly_pipe_flush_req  ? pc_r :
                             `endif//}
                                ifetch_replay_req  ? pc_r :
-                               bjp_req ? prdt_pc_add_op1    :
+                               bjp_req ? prdt_pc    :
+                              //  bjp_req ? prdt_pc_add_op1    :
                                ifu_reset_req   ? pc_rtvec :
                                                  pc_r;
 
@@ -468,7 +473,8 @@ module e203_ifu_ifetch(
                                dly_pipe_flush_req  ? `E203_PC_SIZE'b0 :
                             `endif//}
                                ifetch_replay_req  ? `E203_PC_SIZE'b0 :
-                               bjp_req ? prdt_pc_add_op2    :
+                               bjp_req ? 'b0    :
+                              //  bjp_req ? prdt_pc_add_op2    :
                                ifu_reset_req   ? `E203_PC_SIZE'b0 :
                                                  pc_incr_ofst ;
 

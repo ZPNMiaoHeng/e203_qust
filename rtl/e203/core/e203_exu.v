@@ -110,6 +110,8 @@ module e203_exu(
   output bht_wb_prdt,                             // TODO: bht IO --- 
   output bht_wb_rslv,                             // TODO: bht IO --- exTakenPre
   output [`E203_PC_SIZE-1:0] bht_wb_pc,           // TODO: bht IO --- takenPC
+  output [`E203_PC_SIZE-1:0] bht_wb_takenPC,              // TODO: bht IO --- takenPC
+
   `endif
 
   //////////////////////////////////////////////////////////////
@@ -885,6 +887,7 @@ module e203_exu(
     .bht_wb_prdt             (bht_wb_prdt),                             // TODO: bht IO --- 
     .bht_wb_rslv             (bht_wb_rslv),                             // TODO: bht IO --- exTakenPre
     .bht_wb_pc               (bht_wb_pc),           // TODO: bht IO --- takenPC
+    .bht_wb_takenPC          (bht_wb_takenPC),
   `endif
 
     .clk                     (clk          ),

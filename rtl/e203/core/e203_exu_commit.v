@@ -150,6 +150,7 @@ module e203_exu_commit(
   output bht_wb_prdt,                             // TODO: bht IO --- 
   output bht_wb_rslv,                             // TODO: bht IO --- exTakenPre
   output [`E203_PC_SIZE-1:0] bht_wb_pc,           // TODO: bht IO --- takenPC
+  output [`E203_PC_SIZE-1:0] bht_wb_takenPC,              // TODO: bht IO --- takenPC
   `endif
 
   input  clk,
@@ -341,6 +342,7 @@ module e203_exu_commit(
   assign bht_wb_prdt = alu_cmt_i_bjp_prdt;
   assign bht_wb_rslv = alu_cmt_i_bjp_rslv;
   assign bht_wb_pc   = alu_cmt_i_pc;
+  assign bht_wb_takenPC = pipe_flush_pc;
   `endif
 
 `ifndef FPGA_SOURCE//{

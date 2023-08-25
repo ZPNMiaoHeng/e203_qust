@@ -363,6 +363,7 @@ module e203_core(
   wire bht_wb_prdt;                             // TODO: bht IO --- 
   wire bht_wb_rslv;                             // TODO: bht IO --- exTakenPre
   wire [`E203_PC_SIZE-1:0] bht_wb_pc;           // TODO: bht IO --- takenPC
+  wire [`E203_PC_SIZE-1:0] bht_wb_takenPC;           // TODO: bht IO --- takenPC
   `endif
 
   wire oitf_empty;
@@ -444,6 +445,7 @@ module e203_core(
     .bht_wb_prdt             (bht_wb_prdt),                             // TODO: bht IO --- 
     .bht_wb_rslv             (bht_wb_rslv),                             // TODO: bht IO --- exTakenPre
     .bht_wb_pc               (bht_wb_pc),           // TODO: bht IO --- takenPC
+    .bht_wb_takenPC          (bht_wb_takenPC),
   `endif
 
                                  
@@ -579,6 +581,7 @@ module e203_core(
     .bht_wb_prdt             (bht_wb_prdt),                             // TODO: bht IO --- 
     .bht_wb_rslv             (bht_wb_rslv),                             // TODO: bht IO --- exTakenPre
     .bht_wb_pc               (bht_wb_pc),           // TODO: bht IO --- takenPC
+    .bht_wb_takenPC          (bht_wb_takenPC),
   `endif
 
     .lsu_o_valid            (lsu_o_valid   ),

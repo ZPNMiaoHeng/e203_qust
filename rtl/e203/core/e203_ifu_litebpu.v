@@ -48,6 +48,7 @@ module e203_ifu_litebpu(
   output prdt_taken,  
   output [`E203_PC_SIZE-1:0] prdt_pc_add_op1,  
   output [`E203_PC_SIZE-1:0] prdt_pc_add_op2,
+  output [`E203_PC_SIZE-1:0] prdt_pc,
 
   input  dec_i_valid,
 
@@ -63,6 +64,8 @@ module e203_ifu_litebpu(
   input bht_wb_prdt,                             // TODO: bht IO --- 
   input bht_wb_rslv,                             // TODO: bht IO --- exTakenPre
   input [`E203_PC_SIZE-1:0] bht_wb_pc,           // TODO: bht IO --- takenPC
+  input [`E203_PC_SIZE-1:0] bht_wb_takenPC,              // TODO: bht IO --- takenPC
+
   `endif
 
   input  clk,
@@ -81,12 +84,16 @@ module e203_ifu_litebpu(
   .io_valid(dec_bxx),
   .io_pc(pc),
   .io_takenPre(bht_prdt_taken),
+  .io_takenPrePC(prdt_pc),
   .io_ready(bht_ready),
 
+  .op1(prdt_pc_add_op1),
+  .op2(prdt_pc_add_op2),
   .io_takenValid(takenValid),
   // .io_takenValid(bht_wb_bxx),
   .io_takenMiss(bht_wb_mis),
   .io_exTakenPre(bht_wb_rslv),
+  .io_nextPC(bht_wb_takenPC),
   .io_takenPC(bht_wb_pc)
   );
   `endif
